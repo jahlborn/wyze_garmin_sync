@@ -7,7 +7,7 @@ import logging
 from fit import FitEncoder_Weight
 from wyze_sdk import Client
 from wyze_sdk.errors import WyzeApiError
-from datetime import datetime
+from datetime import datetime, timedelta
 from wyze_sdk.models import (JsonObject, PropDef, epoch_to_datetime,
                              show_unknown_key_warning)
 from wyze_sdk.models.devices import AbstractWirelessNetworkedDevice, DeviceProp
