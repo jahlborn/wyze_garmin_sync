@@ -118,6 +118,7 @@ class FitEncoder_Weight(FitEncoder):
         for num, basetype, value, scale in content:
             s = pack('BBB', num, basetype['size'], basetype['field'])
             field_defs.append(s)
+            print(f"Packing field {num} with {value} and {scale}")
             if value is None:
                 # invalid value
                 value = basetype['invalid']
