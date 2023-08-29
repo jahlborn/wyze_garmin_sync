@@ -58,7 +58,7 @@ try:
     records = client.scales.get_records(start_time=start_time, end_time=end_time)
     print(f"Found {len(records)} scale records")
     for record in records:
-        write_scale_data(record)
+        write_scale_data(record, "wyze_data.fit")
 except WyzeApiError as e:
     # You will get a WyzeApiError if the request failed
     print(f"Got an error: {e}")
