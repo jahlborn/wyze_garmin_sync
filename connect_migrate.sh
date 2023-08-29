@@ -20,7 +20,7 @@ cd ~/path_to_your_script/
 ###
 ### end of information to populate
 
-mkdir migrate_data
+mkdir -p migrate_data
 
 python3 ./scale_migrate.py
 
