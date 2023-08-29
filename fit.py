@@ -123,6 +123,7 @@ class FitEncoder_Weight(FitEncoder):
                 value = basetype['invalid']
             elif scale is not None:
                 value *= scale
+            print(f"Packing field {num}")
             values.append(FitBaseType.pack(basetype, value))
         return (b''.join(field_defs), b''.join(values))
 
