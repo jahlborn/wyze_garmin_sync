@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+shopt -s nullglob
 
 ### information to populate
 ###
@@ -23,15 +24,15 @@ mkdir migrate_data
 
 python3 ./scale_migrate.py
 
-for fname in migrate_data/*.fit ; do
-  echo "uploading $fname ..."
+# for fname in migrate_data/*.fit ; do
+#   echo "uploading $fname ..."
 
-  if gupload -u $Garmin_username -p $Garmin_password  -v 1 "$fname"; then
-    echo "uploaded $fname"
-  else
-    echo "failed uploading $fname"
-    exit 1
-  fi
+#   if gupload -u $Garmin_username -p $Garmin_password  -v 1 "$fname"; then
+#     echo "uploaded $fname"
+#   else
+#     echo "failed uploading $fname"
+#     exit 1
+#   fi
   
-done
+# done
 
