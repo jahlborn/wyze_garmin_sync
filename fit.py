@@ -118,12 +118,15 @@ class FitEncoder_Weight(FitEncoder):
         for num, basetype, value, scale in content:
             s = pack('BBB', num, basetype['size'], basetype['field'])
             field_defs.append(s)
-            print(f"Packing field {num} with {value} and {scale}")
+            #print(f"Packing field {num} with {value} and {scale}")
             if value is None:
                 # invalid value
                 value = basetype['invalid']
             elif scale is not None:
                 value *= scale
+            if basetype['name'].startswith('uint') and value < 0:
+                print(f"Setting invalid value for {num} with {value} to 0")
+                value = 0
             values.append(FitBaseType.pack(basetype, value))
         return (b''.join(field_defs), b''.join(values))
 
@@ -178,7 +181,6 @@ class FitEncoder_Weight(FitEncoder):
     def write_device_info(self, timestamp, serial_number=1, cum_operationg_time=1, manufacturer=11,
                           product=2429, software_version=1, battery_voltage=1, device_index=1,
                           device_type=119, hardware_version=1, battery_status=1):
-        print(f"device type {device_type}")
         content = [
             (253, FitBaseType.uint32, self.timestamp(timestamp), 1),
             (3, FitBaseType.uint32z, serial_number, 1),
