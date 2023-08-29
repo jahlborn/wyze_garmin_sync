@@ -53,7 +53,7 @@ class FitBaseType(object):
         fmt = FitBaseType.get_format(basetype)
         try:
           return pack(fmt, value)
-        except Error as e:
+        except Exception as e:
           print(f"failed packing {value} as {basetype}: {e}")
           raise
 
