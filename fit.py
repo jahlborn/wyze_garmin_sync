@@ -51,7 +51,11 @@ class FitBaseType(object):
         if basetype['#'] in (1,2,3,4,5,6,10,11,12):
             value = int(value)
         fmt = FitBaseType.get_format(basetype)
-        return pack(fmt, value)
+        try:
+          return pack(fmt, value)
+        except Error as e:
+          print(f"failed packing {value} as {basetype}: {e}")
+          raise
 
 
 class Fit(object):
