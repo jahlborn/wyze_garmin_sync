@@ -123,7 +123,6 @@ class FitEncoder_Weight(FitEncoder):
                 value = basetype['invalid']
             elif scale is not None:
                 value *= scale
-            print(f"Packing field {num}")
             values.append(FitBaseType.pack(basetype, value))
         return (b''.join(field_defs), b''.join(values))
 
@@ -178,6 +177,7 @@ class FitEncoder_Weight(FitEncoder):
     def write_device_info(self, timestamp, serial_number=1, cum_operationg_time=1, manufacturer=11,
                           product=2429, software_version=1, battery_voltage=1, device_index=1,
                           device_type=119, hardware_version=1, battery_status=1):
+        print(f"device type {device_type}")
         content = [
             (253, FitBaseType.uint32, self.timestamp(timestamp), 1),
             (3, FitBaseType.uint32z, serial_number, 1),
